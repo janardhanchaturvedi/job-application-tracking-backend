@@ -20,6 +20,7 @@ export const getApplicationByIdController = async (req, res) => {
       req.query.limit,
       req.query.search
     );
+
     return res
       .status(StatusCodes.OK)
       .json(sucessResponse(response, 'Application fectched successfully'));
