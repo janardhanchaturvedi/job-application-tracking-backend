@@ -1,6 +1,11 @@
 import { StatusCodes } from 'http-status-codes';
 
-import { getApplicationByIdService } from '../service/applicationService.js';
+import {
+  createApplicationService,
+  deleteApplicationService,
+  getApplicationByIdService,
+  updateApplicationService
+} from '../service/applicationService.js';
 import {
   customErrorResponse,
   internalServerError,
@@ -18,6 +23,59 @@ export const getApplicationByIdController = async (req, res) => {
     return res
       .status(StatusCodes.OK)
       .json(sucessResponse(response, 'Application fectched successfully'));
+  } catch (error) {
+    if (error.statusCode) {
+      return res.status(error.statusCode).json(customErrorResponse(error));
+    }
+
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json(internalServerError(error));
+  }
+};
+
+export const createApplicationController = async (req, res) => {
+  try {
+    const response = await createApplicationService(req.body);
+    return res
+      .status(StatusCodes.CREATED)
+      .json(sucessResponse(response, 'Application created successfully'));
+  } catch (error) {
+    if (error.statusCode) {
+      return res.status(error.statusCode).json(customErrorResponse(error));
+    }
+
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json(internalServerError(error));
+  }
+};
+export const updateApplicationController = async (req, res) => {
+  try {
+    const response = await updateApplicationService(
+      req.params.applicationId,
+      req.body
+    );
+    return res
+      .status(StatusCodes.OK)
+      .json(sucessResponse(response, 'Application updated successfully'));
+  } catch (error) {
+    if (error.statusCode) {
+      return res.status(error.statusCode).json(customErrorResponse(error));
+    }
+
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json(internalServerError(error));
+  }
+};
+
+export const deleteApplicationController = async (req, res) => {
+  try {
+    const response = await deleteApplicationService(req.params.applicationId);
+    return res
+      .status(StatusCodes.OK)
+      .json(sucessResponse(response, 'Application deleted successfully'));
   } catch (error) {
     if (error.statusCode) {
       return res.status(error.statusCode).json(customErrorResponse(error));
