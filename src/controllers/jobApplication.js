@@ -4,6 +4,7 @@ import {
   createApplicationService,
   deleteApplicationService,
   getApplicationByIdService,
+  getApplicationDetailsService,
   updateApplicationService
 } from '../service/applicationService.js';
 import {
@@ -92,7 +93,7 @@ export const deleteApplicationController = async (req, res) => {
 
 export const getApplicationDetailsController = async (req, res) => {
   try {
-    const response = await getApplicationByIdService(
+    const response = await getApplicationDetailsService(
       req.params.applicationId,
       req.user
     );
