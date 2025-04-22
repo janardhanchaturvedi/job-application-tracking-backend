@@ -12,7 +12,7 @@ export const customErrorResponse = (error) => {
     return internalServerError(error);
   }
   return {
-    sucess: false,
+    success: false,
     err: error.explanation,
     data: {},
     message: error.message

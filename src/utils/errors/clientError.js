@@ -9,6 +9,7 @@ class clientError extends Error {
     this.statusCode = error.statusCode
       ? error.statusCode
       : StatusCodes.BAD_REQUEST;
+    this.success = false;
   }
 }
 export default clientError;
