@@ -88,3 +88,20 @@ export const deleteApplicationService = async (applicationId) => {
     throw error;
   }
 };
+
+export const getApplicationDetailsService = async (applicationId) => {
+  try {
+    const application = await applicationRepository.getById(applicationId);
+    if (!application) {
+      throw new clientError({
+        explanation: 'Invalid data sent from client',
+        message: 'Something went wrong while fetching application details',
+        statusCode: StatusCodes.OK
+      });
+    }
+    return application;
+  } catch (error) {
+    console.log('🚀 getApplicationDetailsService ~ error:', error);
+    throw error;
+  }
+};

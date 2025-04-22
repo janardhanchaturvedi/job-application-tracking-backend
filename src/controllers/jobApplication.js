@@ -89,3 +89,25 @@ export const deleteApplicationController = async (req, res) => {
       .json(internalServerError(error));
   }
 };
+
+export const getApplicationDetailsController = async (req, res) => {
+  try {
+    const response = await getApplicationByIdService(
+      req.params.applicationId,
+      req.user
+    );
+    return res
+      .status(StatusCodes.OK)
+      .json(
+        sucessResponse(response, 'Application details fetched successfully')
+      );
+  } catch (error) {
+    if (error.statusCode) {
+      return res.status(error.statusCode).json(customErrorResponse(error));
+    }
+
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json(internalServerError(error));
+  }
+};
