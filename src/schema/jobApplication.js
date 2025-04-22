@@ -26,8 +26,7 @@ const applicationSchema = new mongoose.Schema(
       default: 'Applied'
     },
     jobLink: {
-      type: String,
-      required: true
+      type: String
     },
     notes: {
       type: String

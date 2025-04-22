@@ -36,7 +36,10 @@ export const getApplicationByIdController = async (req, res) => {
 
 export const createApplicationController = async (req, res) => {
   try {
-    const response = await createApplicationService(req.body);
+    const response = await createApplicationService({
+      ...req.body,
+      userId: req.user
+    });
     return res
       .status(StatusCodes.CREATED)
       .json(sucessResponse(response, 'Application created successfully'));
