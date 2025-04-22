@@ -38,7 +38,7 @@ export const signInService = async (userData) => {
       throw new clientError({
         explanation: 'Invalid data is send from the client',
         message: 'No registered user found with this email',
-        statusCode: StatusCodes.NOT_FOUND
+        statusCode: StatusCodes.OK
       });
     }
 
@@ -47,7 +47,7 @@ export const signInService = async (userData) => {
       throw new clientError({
         explanation: 'Invalid Data is send from the client',
         message: 'Invalid passoword please try again',
-        statusCode: StatusCodes.BAD_REQUEST
+        statusCode: StatusCodes.OK
       });
     }
     return {

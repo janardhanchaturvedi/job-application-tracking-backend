@@ -21,7 +21,7 @@ export const getApplicationByIdService = async (
       throw new clientError({
         explanation: 'Invalid data sent from client',
         message: 'Job Applications not found with provided ID',
-        statusCode: StatusCodes.NOT_FOUND
+        statusCode: StatusCodes.OK
       });
     }
 
@@ -39,7 +39,7 @@ export const createApplicationService = async (applicationData) => {
       throw new clientError({
         explanation: 'Invalid data sent from client',
         message: 'Something went wrong while creating application',
-        statusCode: StatusCodes.BAD_REQUEST
+        statusCode: StatusCodes.OK
       });
     }
     return application;
@@ -62,7 +62,7 @@ export const updateApplicationService = async (
       throw new clientError({
         explanation: 'Invalid data sent from client',
         message: 'Something went wrong while updating application',
-        statusCode: StatusCodes.BAD_REQUEST
+        statusCode: StatusCodes.OK
       });
     }
     return application;
@@ -79,7 +79,7 @@ export const deleteApplicationService = async (applicationId) => {
       throw new clientError({
         explanation: 'Invalid data sent from client',
         message: 'Something went wrong while deleting application',
-        statusCode: StatusCodes.BAD_REQUEST
+        statusCode: StatusCodes.OK
       });
     }
     return application;
