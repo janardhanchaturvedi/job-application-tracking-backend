@@ -18,8 +18,7 @@ const userSchema = new mongoose.Schema(
     },
     username: {
       type: String,
-      required: [true, 'Username is required'],
-      unique: [true, 'Username is already present']
+      required: [true, 'Username is required']
     },
     avatar: {
       type: String
